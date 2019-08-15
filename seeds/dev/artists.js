@@ -1,15 +1,25 @@
 const albumsData = require('../../data/albumsData');
 const artistsData = require('../../data/artistsData');
 
+const findAlbum = (currentAlbum) => {
+  return albumsData.find(album => {
+    return album.album_name === currentAlbum;
+  })
+}
+
+const createAlbum = (knex, album) => {
+  return knex("albums").insert(album);
+}
 
 const createArtist = (knex, artist) => {
   return knex("artists").insert({
     "artist_name": artist.artist_name,
     "genre": artist.genre,
     "member_count": artist.member_count,
-    "year_formed": artis.year_formed
+    "year_formed": artist.year_formed
   }, "id")
   .then(artistId => {
+    console.log(artistId);
     let albumPromises = [];
 
     artist.albums.forEach(album => {
@@ -26,15 +36,6 @@ const createArtist = (knex, artist) => {
   })
 }
 
-const findAlbum = (currentAlbum) => {
-  return albumsData.find(album => {
-    return album.album_name === currentAlbum;
-  })
-}
-
-const createAlbum = (knex, album) => {
-  return knex("albums").insert(album);
-}
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
