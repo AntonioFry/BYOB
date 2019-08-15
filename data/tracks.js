@@ -246,3 +246,5 @@ const tracks = [
     "album_id": 6
   }
 ]
+
+export default tracks;

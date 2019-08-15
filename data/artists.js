@@ -1,122 +1,184 @@
 const artists = [
   {
-    "id": 1,
-    "artist_name": "Led Zepplin"
+    "artist_name": "Led Zepplin",
+    "genre": "Classic Rock",
+    "member_count": 8,
+    "year_formed": 1968
   },
   {
-    "id": 2,
-    "artist_name": "Black Sabbath"
+    "artist_name": "Black Sabbath",
+    "genre": "Hard Rock",
+    "member_count": 21,
+    "year_formed": 1968
   },
   {
-    "id": 3,
-    "artist_name": "Royal Blood"
+    "artist_name": "Royal Blood",
+    "genre": "Modern Rock",
+    "member_count": 2,
+    "year_formed": 2013
   },
   {
-    "id": 4,
-    "artist_name": "Fingers of the Sun"
+    "artist_name": "Fingers of the Sun",
+    "genre": "Psychedelic",
+    "member_count": 6,
+    "year_formed": 2010
   },
   {
-    "id": 5,
-    "artist_name": "Derek & The Dominos"
+    "artist_name": "Derek & The Dominos",
+    "genre": "Classic Rock",
+    "member_count": 6,
+    "year_formed": 1970
   },
   {
-    "id": 6,
-    "artist_name": "The Who"
+    "artist_name": "The Who",
+    "genre": "Classic Rock",
+    "member_count": 7,
+    "year_formed": 1964
   },
   {
-    "id": 7,
-    "artist_name": "Jimi Hendrix"
+    "artist_name": "Jimi Hendrix",
+    "genre": "Classic Rock",
+    "member_count": 4,
+    "year_formed": 1966
   },
   {
-    "id": 8,
-    "artist_name": "Pink Floyd"
+    "artist_name": "Pink Floyd",
+    "genre": "Classic Rock",
+    "member_count": 6,
+    "year_formed": 1965
   },
   {
-    "id": 9,
-    "artist_name": "Gorillaz"
+    "artist_name": "Gorillaz",
+    "genre": "Experimental",
+    "member_count": 4,
+    "year_formed": 1998
   },
   {
-    "id": 10,
-    "artist_name": "The Beatles"
+    "artist_name": "The Beatles",
+    "genre": "Classic Rock",
+    "member_count": 9,
+    "year_formed": 1957
   },
   {
-    "id": 11,
-    "artist_name": "The Doors"
+    "artist_name": "The Doors",
+    "genre": "Classic Rock",
+    "member_count": 4,
+    "year_formed": 1965
   },
   {
-    "id": 12,
-    "artist_name": "Bruce Springsteen"
+    "artist_name": "Bruce Springsteen",
+    "genre": "Folk Rock",
+    "member_count": 17,
+    "year_formed": 1972
   },
   {
-    "id": 13,
-    "artist_name": "John Lennon"
+    "artist_name": "John Lennon",
+    "genre": "Experimental",
+    "member_count": 1,
+    "year_formed": 1970
   },
   {
-    "id": 14,
-    "artist_name": "David Bowie"
+    "artist_name": "David Bowie",
+    "genre": "Rock",
+    "member_count": 1,
+    "year_formed": 1962
   },
   {
-    "id": 15,
-    "artist_name": "The Rolling Stones"
+    "artist_name": "The Rolling Stones",
+    "genre": "Classic Rock",
+    "member_count": 12,
+    "year_formed": 1962
   },
   {
-    "id": 16,
-    "artist_name": "Don McLean"
+    "artist_name": "Don McLean",
+    "genre": "Folk Rock",
+    "member_count": 1,
+    "year_formed": 1969
   },
   {
-    "id": 17,
-    "artist_name": "Curtis Mayfield"
+    "artist_name": "Curtis Mayfield",
+    "genre": "Soul",
+    "member_count": 1,
+    "year_formed": 1958
   },
   {
-    "id": 18,
-    "artist_name": "Wolfmother"
+    "artist_name": "Wolfmother",
+    "genre": "Modern Rock",
+    "member_count": 3,
+    "year_formed": 2000
   },
   {
-    "id": 19,
-    "artist_name": "Sonic Youth"
+    "artist_name": "Sonic Youth",
+    "genre": "Alternative",
+    "member_count": 6,
+    "year_formed": 1981
   },
   {
-    "id": 20,
-    "artist_name": "Nirvana"
+    "artist_name": "Nirvana",
+    "genre": "Grunge",
+    "member_count": 10,
+    "year_formed": 1987
   },
   {
-    "id": 21,
-    "artist_name": "Eagles"
+    "artist_name": "Eagles",
+    "genre": "Classic Rock",
+    "member_count": 12,
+    "year_formed": 1971
   },
   {
-    "id": 22,
-    "artist_name": "Tom Petty "
+    "artist_name": "Tom Petty",
+    "genre": "Folk Rock",
+    "member_count": 1,
+    "year_formed": 1989
   },
   {
-    "id": 23,
-    "artist_name": "Tom Petty and the Heartbreakers"
+    "artist_name": "Tom Petty and the Heartbreakers",
+    "genre": "Classic Rock",
+    "member_count": 9,
+    "year_formed": 1976
   },
   {
-    "id": 24,
-    "artist_name": "Blue Öyster Cult"
+    "artist_name": "Blue Öyster Cult",
+    "genre": "Classic Rock",
+    "member_count": 8,
+    "year_formed": 1967
   },
   {
-    "id": 25,
-    "artist_name": "Guns N' Roses"
+    "artist_name": "Guns N' Roses",
+    "genre": "Hard Rock",
+    "member_count": 22,
+    "year_formed": 1985
   },
   {
-    "id": 26,
-    "artist_name": "Pixies"
+    "artist_name": "Pixies",
+    "genre": "Alternative",
+    "member_count": 6,
+    "year_formed": 1986
   },
   {
-    "id": 27,
-    "artist_name": "Stone Temple Pilots"
+    "artist_name": "Stone Temple Pilots",
+    "genre": "Grunge",
+    "member_count": 6,
+    "year_formed": 1989 
   },
   {
-    "id": 28,
-    "artist_name": "Soundgarden"
+    "artist_name": "Soundgarden",
+    "genre": "Alternative",
+    "member_count": 6,
+    "year_formed": 1984
   },
   {
-    "id": 29,
-    "artist_name": "Stevie Wonder"
+    "artist_name": "Stevie Wonder",
+    "genre": "Funk",
+    "member_count": 1,
+    "year_formed": 1961
   },
   {
-    "id": 30,
-    "artist_name": "Santana"
+    "artist_name": "Santana",
+    "genre": "Latin Rock",
+    "member_count": 25,
+    "year_formed": 1966 
   }
 ]
+
+module.exports = artists;
