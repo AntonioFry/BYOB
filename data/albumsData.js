@@ -1,4 +1,4 @@
-const albums = [
+const albumsData = [
   {
     "album_name": "Nevermind (Deluxe Edition)",
     "track_count": 43,
@@ -42,12 +42,12 @@ const albums = [
   {
     "album_name": "The Dark Side of the Moon",
     "track_count": 10,
-    "year_released": 
+    "year_released": 1973
   },
   {
     "album_name": "Imagine",
     "track_count": 10,
-    "year_released": 1973
+    "year_released": 1970
   },
   {
     "album_name": "Gorillaz",
@@ -186,4 +186,4 @@ const albums = [
   }
 ]
 
-module.exports = albums;
+module.exports = albumsData;
