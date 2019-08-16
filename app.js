@@ -69,9 +69,9 @@ app.get('/api/v1/albums/:id', (request, response) => {
 })
 
 // POST artists
-app.post('api/v1/albums', (request, response) => {
-  const { artist_name, genre, member_count, year_formed } = 
-})
+// app.post('api/v1/albums', (request, response) => {
+//   const { artist_name, genre, member_count, year_formed } = 
+// })
 
 // POST albums
 
