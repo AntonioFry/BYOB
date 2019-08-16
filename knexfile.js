@@ -20,6 +20,9 @@ module.exports = {
     connection: process.env.DATABASE_URL + `?ssl=true`,
     migrations: {
       directory: './migrations'
+    },
+    seeds: {
+      directory: './seeds/dev'
     }
   }
 
