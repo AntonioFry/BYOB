@@ -89,6 +89,18 @@ app.post('/api/v1/artists', (request, response) => {
 
 // POST albums
 app.post('/api/v1/albums', (request, response) => {
+  const { artistName, bodyAlbum } = request.body
+  getArtistId(artistName)
+    .then((artistId) => {
+      console.log(artistId)
+      database('albums').insert({ ...bodyAlbum, artist_id: artistId })
+    })
+    .then((album) => {
+      response.status(201).json(bodyAlbum)
+    })
+    .catch((error) => {
+      response.status(500).json({ error: error.message })
+    })
   // when posting an album the body will require a artist object and album object
   // body.artist
     // the artist object will include the name of the artist that the user manually enters
@@ -115,4 +127,15 @@ const setAlbumsArtist = (artistId, albums) => {
         console.log(error.message)
       })
   })
+}
+
+const getArtistId = (artistName) => {
+  return database('artists').select()
+    .then((allArtists) => {
+      const foundArtist = allArtists.find(artist => artist.artist_name === artistName);
+      return foundArtist.id;
+    })
+    .catch((error) => {
+      console.log(error.message);
+    })
 }
