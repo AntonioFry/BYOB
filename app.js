@@ -69,14 +69,50 @@ app.get('/api/v1/albums/:id', (request, response) => {
 })
 
 // POST artists
-// app.post('api/v1/albums', (request, response) => {
-//   const { artist_name, genre, member_count, year_formed } = 
-// })
+app.post('/api/v1/artists', (request, response) => {
+  const { artist, albums } = request.body
+  database('artists').insert({...artist}, "id")
+    .then((artistId) => {
+      setAlbumsArtist(artistId, albums);
+      response.status(201).json(artist);
+    })
+    .catch((error) => {
+      response.status(500).json({ error: error.message })
+    })
+  // when posting an artist the body will require a artist object and albums object
+  // body.artist
+    // the artist object will include the data (i.e artist_name, year_formed, etc.) that actually gets pushed to the database
+  // body.albums
+    // the albums object will include an array of albums that the user enters in manually
+    // if the album exists in the albums database the artist id will be asigned to that album's artist_id property
+})
 
 // POST albums
-
+app.post('/api/v1/albums', (request, response) => {
+  // when posting an album the body will require a artist object and album object
+  // body.artist
+    // the artist object will include the name of the artist that the user manually enters
+    // if the artist exists in the the artists database the id of that artis will be asigned to the album's artist_id property
+})
 
 // DELETE artist
 
 
 app.listen(PORT, () => console.log('app is running'));
+
+const setAlbumsArtist = (artistId, albums) => {
+  albums.forEach(bodyAlbum => {
+    database('albums').select()
+      .then(allAlbums => {
+        const albumIndex = allAlbums.findIndex(album => album.name === bodyAlbum);
+        if (albumIndex === -1) {
+          console.log(`The album ${bodyAlbum} is not in the database yet`) 
+        } else {
+          allAlbums[albumIndex].artist_id = artistId; 
+        }
+      })
+      .catch((error) => {
+        console.log(error.message)
+      })
+  })
+}
