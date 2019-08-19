@@ -107,7 +107,7 @@ app.post('/api/v1/albums', (request, response) => {
     // if the artist exists in the the artists database the id of that artis will be asigned to the album's artist_id property
 })
 
-// DELETE artist
+// DELETE albums
 app.delete('/api/v1/albums/:id', (request, response) => {
   const { id } = request.params;
   database('albums').where("id", id).del()
@@ -120,6 +120,17 @@ app.delete('/api/v1/albums/:id', (request, response) => {
     })
 })
 
+app.delete('/api/v1/artists/:id', (request, response) => {
+  const { id } = request.params;
+  database('artists').where("id", id).del()
+    .then((artist) => {
+      console.log(artist)
+      response.status(200).json(artist)
+    })
+    .catch((error) => {
+      response.status(500).json({ error: error.message })
+    })
+})
 
 app.listen(PORT, () => console.log('app is running'));
 
@@ -127,11 +138,11 @@ const setAlbumsArtist = (artistId, albums) => {
   albums.forEach(bodyAlbum => {
     database('albums').select()
       .then(allAlbums => {
-        const albumIndex = allAlbums.findIndex(album => album.name === bodyAlbum);
-        if (albumIndex === -1) {
+        const foundAlbum = allAlbums.find(album => album.album_name === bodyAlbum);
+        if (foundAlbum === undefined) {
           console.log(`The album ${bodyAlbum} is not in the database yet`) 
         } else {
-          allAlbums[albumIndex].artist_id = artistId; 
+          database('albums').where("id", foundAlbum.id).update({ artist_id: artistId })
         }
       })
       .catch((error) => {
