@@ -92,8 +92,11 @@ app.post('/api/v1/albums', (request, response) => {
   const { artistName, bodyAlbum } = request.body
   getArtistId(artistName)
     .then((artistId) => {
-      console.log(artistId)
-      database('albums').insert({ ...bodyAlbum, artist_id: artistId })
+      if (artistId === null) {
+        database('albums').insert({...bodyAlbum}, "id");
+      } else {
+        database('albums').insert({ ...bodyAlbum, artist_id: artistId }, "id")
+      }
     })
     .then(() => {
       response.status(201).json(bodyAlbum)
@@ -111,21 +114,20 @@ app.post('/api/v1/albums', (request, response) => {
 app.delete('/api/v1/albums/:id', (request, response) => {
   const { id } = request.params;
   database('albums').where("id", id).del()
-    .then((album) => {
-      console.log(album)
-      response.status(200).json(album)
+    .then(() => {
+      response.status(200).json(id)
     })
     .catch((error) => {
       response.status(500).json({ error: error.message })
     })
 })
 
+// DELETE artists
 app.delete('/api/v1/artists/:id', (request, response) => {
   const { id } = request.params;
   database('artists').where("id", id).del()
-    .then((artist) => {
-      console.log(artist)
-      response.status(200).json(artist)
+    .then(() => {
+      response.status(200).json(id)
     })
     .catch((error) => {
       response.status(500).json({ error: error.message })
@@ -139,10 +141,11 @@ const setAlbumsArtist = (artistId, albums) => {
     database('albums').select()
       .then(allAlbums => {
         const foundAlbum = allAlbums.find(album => album.album_name === bodyAlbum);
+        console.log(foundAlbum)
         if (foundAlbum === undefined) {
           console.log(`The album ${bodyAlbum} is not in the database yet`) 
         } else {
-          database('albums').where("id", foundAlbum.id).update({ artist_id: artistId })
+          database('albums').where("id", '=', foundAlbum.id).update({ artist_id: artistId })
         }
       })
       .catch((error) => {
@@ -155,7 +158,11 @@ const getArtistId = (artistName) => {
   return database('artists').select()
     .then((allArtists) => {
       const foundArtist = allArtists.find(artist => artist.artist_name === artistName);
-      return foundArtist.id;
+      if (foundArtist === undefined) {
+        return null
+      } else {
+        return foundArtist.id;
+      }
     })
     .catch((error) => {
       console.log(error.message);
