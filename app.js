@@ -95,7 +95,7 @@ app.post('/api/v1/albums', (request, response) => {
       console.log(artistId)
       database('albums').insert({ ...bodyAlbum, artist_id: artistId })
     })
-    .then((album) => {
+    .then(() => {
       response.status(201).json(bodyAlbum)
     })
     .catch((error) => {
@@ -108,6 +108,17 @@ app.post('/api/v1/albums', (request, response) => {
 })
 
 // DELETE artist
+app.delete('/api/v1/albums/:id', (request, response) => {
+  const { id } = request.params;
+  database('albums').where("id", id).del()
+    .then((album) => {
+      console.log(album)
+      response.status(200).json(album)
+    })
+    .catch((error) => {
+      response.status(500).json({ error: error.message })
+    })
+})
 
 
 app.listen(PORT, () => console.log('app is running'));
